@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MFA Generator</title>
+  <link rel="stylesheet" href="css/bulma-0.9.4.min.css">
+  <style>
+    [v-cloak] {
+      display: none;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+
+    @media screen and (min-width: 1068px) {
+      .container {
+        max-width: 600px;
+        width: 600px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <script defer src="vue-3.4.20.global.prod.js"></script>
+  <script defer src="otpauth-9.1.3.min.js"></script>
+  <script defer src="app.js?v=1.2"></script>
+
+  <section id="app" class="section" v-cloak>
+
+    <div class="container">
+
+      <h1 class="title">MFA Generator</h1>
+
+      <div class="field">
+        <label class="label is-uppercase">Secret Key</label>
+        <div class="control">
+          <input class="input" type="text" v-model="secret_key" placeholder="Secret key (base-32)">
+        </div>
+      </div>
+      <div class="content">
+        <span class="has-text-grey is-size-7">Valido por {{ updatingIn }} segundos</span>
+        <progress class="progress is-info is-small" v-bind:value="updatingIn" :max="period"></progress>
+      </div>
+      <div class="box">
+        <p class="title is-size-1 has-text-centered" id="token">{{ token }}</p>
+      </div>
+    </div>
+
+  </section>
+
+</body>
+</html>
